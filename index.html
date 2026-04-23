@@ -5,167 +5,328 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HK Clothing Brand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             color: #333;
             line-height: 1.6;
+            background-color: #f8f9fa;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: 3em;
-            margin: 0;
-            color: #2c3e50;
-            letter-spacing: 2px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
         }
 
-        .tagline {
-            font-size: 1.2em;
-            color: #7f8c8d;
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
         }
 
-        main {
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            z-index: 1;
+            position: relative;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         section {
-            margin: 40px 0;
-            padding: 20px;
+            padding: 80px 0;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+        section:nth-child(even) {
+            background: #f8f9fa;
         }
 
         h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .product {
-            width: 30%;
-            margin: 10px;
+            font-size: 2.5rem;
+            font-weight: 600;
             text-align: center;
-            padding: 20px;
-            background: #ecf0f1;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 300px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
             border-radius: 10px;
-            transition: transform 0.3s;
         }
 
-        .product:hover {
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .product h3 {
-            color: #e74c3c;
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
         }
 
-        button {
-            background: #3498db;
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #667eea;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 30px;
+            border-radius: 25px;
             cursor: pointer;
+            font-weight: 600;
             transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        button:hover {
-            background: #2980b9;
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
         }
 
         footer {
-            text-align: center;
-            padding: 20px;
             background: #2c3e50;
             color: white;
+            text-align: center;
+            padding: 40px 0;
         }
 
         @media (max-width: 768px) {
-            .products {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
                 flex-direction: column;
             }
 
-            .product {
-                width: 100%;
+            .products-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>HK</h1>
-        <p class="tagline">Elevate Your Style with Minimal Elegance</p>
-    </header>
-    <main>
-        <section id="about">
+    <div class="hero">
+        <div class="container">
+            <h1>HK</h1>
+            <p>Elevate Your Style with Minimal Elegance</p>
+        </div>
+    </div>
+
+    <section id="about">
+        <div class="container">
             <h2>About HK</h2>
-            <p>HK is a premium clothing brand dedicated to timeless fashion. Our collections blend minimalist design
-                with high-quality materials, ensuring comfort and sophistication in every piece.</p>
-        </section>
-        <section id="products">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>HK is a premium clothing brand dedicated to timeless fashion. Our collections blend minimalist
+                        design with high-quality materials, ensuring comfort and sophistication in every piece. We
+                        believe in sustainable fashion that stands the test of time.</p>
+                    <p>Founded with a vision to redefine modern wardrobe essentials, HK focuses on creating versatile
+                        pieces that adapt to your lifestyle while maintaining impeccable quality and ethical production
+                        standards.</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
             <h2>Featured Products</h2>
-            <div class="products">
-                <div class="product">
-                    <h3>Classic T-Shirt</h3>
-                    <p>Soft cotton, versatile fit.</p>
-                    <button onclick="alert('Added to cart!')">Shop Now</button>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">👕</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Classic T-Shirt</h3>
+                        <p class="product-desc">Soft organic cotton, versatile fit for everyday wear.</p>
+                        <button class="btn" onclick="addToCart('Classic T-Shirt')">Shop Now</button>
+                    </div>
                 </div>
-                <div class="product">
-                    <h3>Premium Hoodie</h3>
-                    <p>Cozy and stylish for any occasion.</p>
-                    <button onclick="alert('Added to cart!')">Shop Now</button>
+                <div class="product-card">
+                    <div class="product-image">🧥</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Hoodie</h3>
+                        <p class="product-desc">Cozy and stylish, perfect for any occasion.</p>
+                        <button class="btn" onclick="addToCart('Premium Hoodie')">Shop Now</button>
+                    </div>
                 </div>
-                <div class="product">
-                    <h3>Slim Jeans</h3>
-                    <p>Modern cut with premium denim.</p>
-                    <button onclick="alert('Added to cart!')">Shop Now</button>
+                <div class="product-card">
+                    <div class="product-image">👖</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Jeans</h3>
+                        <p class="product-desc">Modern cut with premium sustainable denim.</p>
+                        <button class="btn" onclick="addToCart('Slim Jeans')">Shop Now</button>
+                    </div>
                 </div>
             </div>
-        </section>
-        <section id="contact">
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
             <h2>Contact Us</h2>
-            <p>Reach out for inquiries or collaborations.</p>
-            <button onclick="window.location.href='mailto:info@hkclothing.com'">Email Us</button>
-        </section>
-    </main>
+            <div class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" id="name">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" id="email">
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Your Message" id="message"></textarea>
+                </div>
+                <button class="btn" onclick="sendMessage()">Send Message</button>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2026 HK Clothing. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2026 HK Clothing. All rights reserved.</p>
+        </div>
     </footer>
+
     <script>
-        // Simple JS for smooth scrolling or effects
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => btn.style.transform = 'scale(1)', 150);
+        function addToCart(product) {
+            alert(`${product} added to cart!`);
+        }
+
+        function sendMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            if (name && email && message) {
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Smooth scrolling for navigation (if added later)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(section);
         });
     </script>
 </body>
